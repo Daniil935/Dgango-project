@@ -1,2 +1,2 @@
-# Dgango-project
+# Django-project
  

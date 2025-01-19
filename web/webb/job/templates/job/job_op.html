@@ -1,0 +1,39 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Последние вакансии{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="cont_vac">
+    <h2>Последние вакансии</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название вакансии</th>
+                <th>Компания</th>
+                <th>Оклад</th>
+                <th>Регион</th>
+                <th>Дата публикации</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vacancy in vacancies %}
+            <tr>
+                <td>{{ vacancy.name }}</td>
+                <td>{{ vacancy.employer.name }}</td>
+                <td>
+                    {% if vacancy.salary %}
+                        {{ vacancy.salary.from }} - {{ vacancy.salary.to }} {{ vacancy.salary.currency }}
+                    {% else %}
+                        Не указано
+                    {% endif %}
+                </td>
+                <td>{{ vacancy.area.name }}</td>
+                <td>{{ vacancy.published_at|date:"d.m.Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        </div>
+</div>
+{% endblock %}
